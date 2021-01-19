@@ -1,0 +1,11 @@
+<div class="form-group row">
+  <label for="scope" class="col-sm-3 col-form-label">Scope(s)</label>
+  <div class="col-sm-9">
+    <input type="text" name="scope" id="scope" class="form-control"
+           [(ngModel)]="scope" (ngModelChange)="setUrl()">
+  </div>
+</div>
+<div>
+  <pre>{{formattedUrl}}</pre>
+  <a [href]="url" class="btn btn-primary">Authorize</a>
+</div>

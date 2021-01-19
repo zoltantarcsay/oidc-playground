@@ -1,0 +1,54 @@
+<div class="form-group row">
+  <label for="config-endpoint" class="col-sm-3 col-form-label">Config endpoint</label>
+  <div class="col-sm-9 d-flex">
+    <input type="text" name="config-endpoint" id="config-endpoint" class="form-control mr-3"
+           placeholder="e.g. https://example.com/oauth2/.well-known/openid-configuration"
+           [(ngModel)]="configEndpoint">
+    <button class="btn btn-primary" (click)="getOidcConfig()">Fetch</button>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="authorization_endpoint" class="col-sm-3 col-form-label">Authorization endpoint</label>
+  <div class="col-sm-9">
+    <input type="text" name="authorization_endpoint" id="authorization_endpoint" class="form-control"
+           [(ngModel)]="config.authorization_endpoint" (ngModelChange)="configChange.emit(config)">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="token_endpoint" class="col-sm-3 col-form-label">Token endpoint</label>
+  <div class="col-sm-9">
+    <input type="text" name="token_endpoint" id="token_endpoint" class="form-control"
+           [(ngModel)]="config.token_endpoint" (ngModelChange)="configChange.emit(config)">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="userinfo_endpoint" class="col-sm-3 col-form-label">User info endpoint</label>
+  <div class="col-sm-9">
+    <input type="text" name="userinfo_endpoint" id="userinfo_endpoint" class="form-control"
+           [(ngModel)]="config.userinfo_endpoint" (ngModelChange)="configChange.emit(config)">
+  </div>
+</div>
+<div class="form-group row" *ngIf="config.scopes_supported">
+  <label class="col-sm-3">Scopes supported</label>
+  <div class="col-sm-9">
+    <div class="badge badge-pill badge-dark mr-1" *ngFor="let scope of config.scopes_supported">{{scope}}</div>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="client_id" class="col-sm-3 col-form-label">Client ID</label>
+  <div class="col-sm-9">
+    <input type="text" name="client_id" id="client_id" class="form-control"
+           [(ngModel)]="config.client_id" (ngModelChange)="configChange.emit(config)">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="client_secret" class="col-sm-3 col-form-label">Client Secret</label>
+  <div class="col-sm-9">
+    <input type="text" name="client_secret" id="client_secret" class="form-control"
+           [(ngModel)]="config.client_secret" (ngModelChange)="configChange.emit(config)">
+  </div>
+</div>
+<hr>
+<div>
+  <button class="btn btn-dark" (click)="clear()">Clear</button>
+</div>

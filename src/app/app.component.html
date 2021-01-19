@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="display-4">OIDC Playground</h1>
+  <hr>
+  <div class="card bg-light shadow-sm">
+    <div class="card-body">
+      <app-oidc-config [(config)]="config"></app-oidc-config>
+    </div>
+  </div>
+  <div class="mt-4">
+    <h5>Step 1: Authorize</h5>
+    <app-oidc-authorize [config]="config" [state]="state"></app-oidc-authorize>
+  </div>
+  <hr>
+  <div>
+    <h5>Step 2: Get access token</h5>
+    <app-oidc-access-token [config]="config" [code]="code"
+                           (accessTokenChange)="accessToken = $event"></app-oidc-access-token>
+  </div>
+  <hr>
+  <div>
+    <h5>Step 3: User Info</h5>
+    <app-oidc-userinfo [config]="config" [accessToken]="accessToken"></app-oidc-userinfo>
+  </div>
+</div>
