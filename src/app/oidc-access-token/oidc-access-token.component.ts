@@ -12,6 +12,7 @@ export class OidcAccessTokenComponent implements OnInit {
   @Input() config: OidcConfig = {} as OidcConfig;
   @Input() code: string;
   accessToken: AccessToken;
+  idToken: any[];
   @Output() accessTokenChange = new EventEmitter<AccessToken>();
 
   constructor(private proxyService: ProxyService) { }
@@ -32,7 +33,16 @@ export class OidcAccessTokenComponent implements OnInit {
         `&code=${this.code}`
     });
     this.accessToken = data;
+    this.idToken = this.toIdToken(data.id_token);
     this.accessTokenChange.emit(this.accessToken);
+  }
+
+  toIdToken(jwt: string): any[] {
+    return jwt
+      ?.split('.')
+      .slice(0, 2)
+      .map(part => atob(part))
+      .map(decoded => JSON.parse(decoded));
   }
 
 }

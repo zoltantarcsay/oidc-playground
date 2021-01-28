@@ -3,3 +3,6 @@
   <button class="btn btn-primary" (click)="getAccessToken()">Get Access Token</button>
 </p>
 <pre>{{accessToken | json}}</pre>
+<h5>ID Token:</h5>
+<pre *ngIf="idToken">{{idToken[0] | json}}
+{{idToken[1] | json}}</pre>

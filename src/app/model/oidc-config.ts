@@ -3,6 +3,7 @@ export interface OidcConfig {
   userinfo_endpoint: string;
   authorization_endpoint: string;
   token_endpoint: string;
+  introspection_endpoint: string;
   client_id?: string;
   client_secret?: string;
 }

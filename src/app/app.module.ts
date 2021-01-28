@@ -9,6 +9,7 @@ import { OidcConfigComponent } from './oidc-config/oidc-config.component';
 import { OidcAuthorizeComponent } from './oidc-authorize/oidc-authorize.component';
 import { OidcAccessTokenComponent } from './oidc-access-token/oidc-access-token.component';
 import { OidcUserinfoComponent } from './oidc-userinfo/oidc-userinfo.component';
+import { OidcIntrospectionComponent } from './oidc-introspection/oidc-introspection.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { OidcUserinfoComponent } from './oidc-userinfo/oidc-userinfo.component';
     OidcConfigComponent,
     OidcAuthorizeComponent,
     OidcAccessTokenComponent,
-    OidcUserinfoComponent
+    OidcUserinfoComponent,
+    OidcIntrospectionComponent
   ],
   imports: [
     BrowserModule,

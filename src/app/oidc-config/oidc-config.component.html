@@ -28,6 +28,13 @@
            [(ngModel)]="config.userinfo_endpoint" (ngModelChange)="configChange.emit(config)">
   </div>
 </div>
+<div class="form-group row">
+  <label for="introspection_endpoint" class="col-sm-3 col-form-label">Introspection endpoint</label>
+  <div class="col-sm-9">
+    <input type="text" name="introspection_endpoint" id="introspection_endpoint" class="form-control"
+           [(ngModel)]="config.introspection_endpoint" (ngModelChange)="configChange.emit(config)">
+  </div>
+</div>
 <div class="form-group row" *ngIf="config.scopes_supported">
   <label class="col-sm-3">Scopes supported</label>
   <div class="col-sm-9">
