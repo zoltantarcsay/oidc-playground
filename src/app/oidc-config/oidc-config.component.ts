@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { OidcConfig } from '../model/oidc-config';
+import { AUthMethod, OidcConfig } from '../model/oidc-config';
 import { ProxyService } from '../proxy.service';
 
 @Component({
@@ -40,6 +40,10 @@ export class OidcConfigComponent implements OnInit {
     localStorage.removeItem(this.storageKey);
     this.config = {} as OidcConfig;
     this.configChange.emit(this.config);
+  }
+
+  setAuthMethod(authMethod: AUthMethod): void {
+    this.configChange.emit({...this.config, client_auth_method: authMethod});
   }
 
 }

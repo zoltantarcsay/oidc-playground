@@ -9,7 +9,9 @@ server.use(json());
 server.post('/api/v1/proxy', async (req, res) => {
   const { method, url, data, headers } = req.body;
   try {
-    const proxyResponse = await axios.request({ method, url, data, headers });
+    const options = { method, url, data, headers };
+    console.log(options);
+    const proxyResponse = await axios.request(options);
     res.send({
       data: proxyResponse.data,
       headers: proxyResponse.headers,
@@ -17,6 +19,7 @@ server.post('/api/v1/proxy', async (req, res) => {
       statusText: proxyResponse.statusText
     });
   } catch (e) {
+    // console.log(e.request);
     res.send({ error: e.message });
   }
 });

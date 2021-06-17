@@ -21,16 +21,27 @@ export class OidcAccessTokenComponent implements OnInit {
   }
 
   async getAccessToken(): Promise<void> {
-    const { token_endpoint, client_id, client_secret } = this.config;
+    const { token_endpoint, client_id, client_secret, client_auth_method } = this.config;
     const redirectUri = location.href.replace(/\?.*/, '');
+    const headers: any = {};
+
+    if (client_auth_method === 'client_secret_basic') {
+      headers.authorization = `Basic ${btoa(`${client_id}:${client_secret}`)}`;
+    }
+
+    let requestData = 'grant_type=authorization_code' +
+      `&redirect_uri=${redirectUri}` +
+      `&code=${this.code}`;
+
+    if (client_auth_method === 'client_secret_post') {
+      requestData += `&client_id=${client_id}&client_secret=${client_secret}`;
+    }
+
     const { data } = await this.proxyService.request<string, AccessToken>({
+      headers,
       method: 'POST',
       url: token_endpoint,
-      data: 'grant_type=authorization_code' +
-        `&client_id=${client_id}` +
-        `&client_secret=${client_secret}` +
-        `&redirect_uri=${redirectUri}` +
-        `&code=${this.code}`
+      data: requestData
     });
     this.accessToken = data;
     this.idToken = this.toIdToken(data.id_token);

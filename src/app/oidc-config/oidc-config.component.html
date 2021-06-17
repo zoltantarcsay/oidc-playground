@@ -55,6 +55,25 @@
            [(ngModel)]="config.client_secret" (ngModelChange)="configChange.emit(config)">
   </div>
 </div>
+<div class="form-group row">
+  <label class="col-sm-3 col-form-label">Auth Method</label>
+  <div class="col-sm-9">
+    <div class="form-check">
+      <input type="radio" name="client_auth_method" id="client_auth_method_basic" class="form-check-input"
+             [checked]="config.client_auth_method === 'client_secret_basic'" (click)="setAuthMethod('client_secret_basic')">
+      <label class="form-check-label" for="client_auth_method_basic">
+        client_secret_basic
+      </label>
+    </div>
+    <div class="form-check">
+      <input type="radio" name="client_auth_method" id="client_auth_method_post" class="form-check-input"
+             [checked]="config.client_auth_method === 'client_secret_post'" (click)="setAuthMethod('client_secret_post')">
+      <label class="form-check-label" for="client_auth_method_post">
+        client_secret_post
+      </label>
+    </div>
+  </div>
+</div>
 <hr>
 <div>
   <button class="btn btn-dark" (click)="clear()">Clear</button>
